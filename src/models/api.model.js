@@ -15,7 +15,7 @@ const Livres = function(livre) {
 
 Livres.getLivres = () => {
     return new Promise((resolve, reject) => {
-        const requete = `SELECT * FROM livre`;
+        const requete = `SELECT * FROM Livre`;
         const params = []
 
         sql.query(requete, params, (erreur, resultat) => {
@@ -29,7 +29,7 @@ Livres.getLivres = () => {
 
 Livres.addLivre = (uuid,nom,description,auteurNom,nombrePage,disponible,image,imageBase) => {
     return new Promise((resolve, reject) => {
-        const requete = `INSERT INTO livre (uuid,nom,description,auteurNom,nombrePage,disponible,image,imageBase) VALUES (?,?,?,?,?,?,?,?)`;
+        const requete = `INSERT INTO Livre (uuid,nom,description,auteurNom,nombrePage,disponible,image,imageBase) VALUES (?,?,?,?,?,?,?,?)`;
         const params = [uuid,nom,description,auteurNom,nombrePage,disponible,image,imageBase]
 
         sql.query(requete, params, (erreur, resultat) => {
@@ -43,7 +43,7 @@ Livres.addLivre = (uuid,nom,description,auteurNom,nombrePage,disponible,image,im
 
 Livres.removeLivre = (uuid) => {
     return new Promise((resolve, reject) => {
-        const requete = `DELETE FROM livre WHERE uuid = ?`;
+        const requete = `DELETE FROM Livre WHERE uuid = ?`;
         const params = [uuid]
 
         sql.query(requete, params, (erreur, resultat) => {
@@ -57,7 +57,7 @@ Livres.removeLivre = (uuid) => {
 
 Livres.updateLivre = (uuid,disponible) => {
     return new Promise((resolve, reject) => {
-        const requete = `UPDATE livre SET disponible = ? WHERE uuid = ?`;
+        const requete = `UPDATE Livre SET disponible = ? WHERE uuid = ?`;
         const params = [disponible,uuid]
 
         sql.query(requete, params, (erreur, resultat) => {
