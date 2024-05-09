@@ -19,6 +19,20 @@ exports.addLivre = (req, res) => {
     var image = req.body.image;
     var imageBase = req.body.imageBase;
 
+    if (disponible == "false") {
+        disponible = 0
+    }
+    else {
+        disponible = 1
+    }
+
+    if (imageBase == "false") {
+        imageBase = 0
+    }
+    else {
+        imageBase = 1
+    }
+
     Livres.addLivre(uuid,nom,description,auteurNom,nombrePage,disponible,image,imageBase)
     .then((livre) => {
         res.send({
@@ -28,7 +42,7 @@ exports.addLivre = (req, res) => {
 };
 
 exports.removeLivre = (req, res) => {
-    var uuid = req.params.uuid
+    var uuid = req.body.uuid
 
     Livres.removeLivre(uuid)
     .then((livre) => {
@@ -39,10 +53,9 @@ exports.removeLivre = (req, res) => {
 };
 
 exports.updateLivre = async (req, res) => {
-    var uuid = req.params.uuid;
-    var complete = req.body.complete;
+    var uuid = req.body.uuid;
     
-    Livres.updateSousTache(uuid,complete)
+    Livres.updateLivre(uuid)
     .then((livre) => {
         res.send({
             "message": `Le livre avec l'uuid: ${uuid}, a été modifiée avec succès.`,

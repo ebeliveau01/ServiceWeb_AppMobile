@@ -55,10 +55,10 @@ Livres.removeLivre = (uuid) => {
     });
 };
 
-Livres.updateLivre = (uuid,disponible) => {
+Livres.updateLivre = (uuid) => {
     return new Promise((resolve, reject) => {
-        const requete = `UPDATE Livre SET disponible = ? WHERE uuid = ?`;
-        const params = [disponible,uuid]
+        const requete = `UPDATE Livre SET disponible = false WHERE uuid = ?`;
+        const params = [uuid]
 
         sql.query(requete, params, (erreur, resultat) => {
             if (erreur) {
