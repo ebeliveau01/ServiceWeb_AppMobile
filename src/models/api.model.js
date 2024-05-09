@@ -15,7 +15,7 @@ const Livres = function(livre) {
 
 Livres.getLivres = () => {
     return new Promise((resolve, reject) => {
-        const requete = `SELECT * FROM livres`;
+        const requete = `SELECT * FROM livre`;
         const params = []
 
         sql.query(requete, params, (erreur, resultat) => {
@@ -57,7 +57,7 @@ Livres.removeLivre = (uuid) => {
 
 Livres.updateLivre = (uuid,disponible) => {
     return new Promise((resolve, reject) => {
-        const requete = `UPDATE taches SET disponible = ? WHERE uuid = ?`;
+        const requete = `UPDATE livre SET disponible = ? WHERE uuid = ?`;
         const params = [disponible,uuid]
 
         sql.query(requete, params, (erreur, resultat) => {
