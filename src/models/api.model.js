@@ -27,6 +27,20 @@ Livres.getLivres = () => {
     });
 };
 
+Livres.getLivre = (uuid) => {
+    return new Promise((resolve, reject) => {
+        const requete = `SELECT * FROM Livre WHERE uuid = ?`;
+        const params = [uuid]
+
+        sql.query(requete, params, (erreur, resultat) => {  
+            if (erreur) {
+                reject(erreur);
+            }
+            resolve(resultat);
+        });
+    });
+};
+
 Livres.addLivre = (uuid,nom,description,auteurNom,nombrePage,disponible,image,imageBase) => {
     return new Promise((resolve, reject) => {
         const requete = `INSERT INTO Livre (uuid,nom,description,auteurNom,nombrePage,disponible,image,imageBase) VALUES (?,?,?,?,?,?,?,?)`;

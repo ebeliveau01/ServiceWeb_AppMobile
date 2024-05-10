@@ -9,7 +9,7 @@ exports.getLivres = (req, res) => {
     });
 };
 
-exports.addLivre = (req, res) => {
+exports.addLivre = async (req, res) => {
     var uuid = req.body.uuid;
     var nom = req.body.titre;
     var description = req.body.description;
@@ -33,12 +33,16 @@ exports.addLivre = (req, res) => {
         imageBase = 1
     }
 
-    Livres.addLivre(uuid,nom,description,auteurNom,nombrePage,disponible,image,imageBase)
-    .then((livre) => {
-        res.send({
-            "message": `Le livre: ${uuid}, a été ajoutée avec succès.`,
+    let livres = await Livres.getLivre(uuid);
+
+    if (!livres) {
+        Livres.addLivre(uuid,nom,description,auteurNom,nombrePage,disponible,image,imageBase)
+        .then((livre) => {
+            res.send({
+                "message": `Le livre: ${uuid}, a été ajoutée avec succès.`,
+            });
         });
-    });
+    }
 };
 
 exports.removeLivre = (req, res) => {
