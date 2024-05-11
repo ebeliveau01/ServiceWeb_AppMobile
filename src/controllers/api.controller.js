@@ -36,7 +36,7 @@ exports.addLivre = async (req, res) => {
     let livres = await Livres.getLivre(uuid);
     console.log(livres)
 
-    if (!livres) {
+    if (livres.lenght != 0) {
         Livres.addLivre(uuid,nom,description,auteurNom,nombrePage,disponible,image,imageBase)
         .then((livre) => {
             res.send({
