@@ -1,3 +1,4 @@
+drop table if exists Livre;
 CREATE TABLE Livre(
     id integer primary key auto_increment,
     uuid varchar(255),
@@ -8,9 +9,4 @@ CREATE TABLE Livre(
     disponible bool,
     image varchar(255),
     imageBase bool
-);
-
-CREATE TABLE User(
-    id integer primary key auto_increment,
-    cle_api varchar(255)
 );
