@@ -45,7 +45,7 @@ exports.addLivre = async (req, res) => {
         });
     }
     else {
-        res.send({
+        res.status(401).send({
             "message": `Le livre: ${uuid}, a déjà été ajoutée.`,
         });
     }
