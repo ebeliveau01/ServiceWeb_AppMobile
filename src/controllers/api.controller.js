@@ -14,7 +14,7 @@ exports.addLivre = async (req, res) => {
     var nom = req.body.titre;
     var description = req.body.description;
     var auteurNom = req.body.auteurNom;
-    var nombrePage = req.body.nombrePage;
+    var nombrePage = String(req.body.nombrePage);
     var disponible = req.body.disponible;
     var image = req.body.image;
     var imageBase = req.body.imageBase;
@@ -34,6 +34,7 @@ exports.addLivre = async (req, res) => {
     }
 
     let livres = await Livres.getLivre(uuid);
+    console.log(livres)
 
     if (!livres) {
         Livres.addLivre(uuid,nom,description,auteurNom,nombrePage,disponible,image,imageBase)
